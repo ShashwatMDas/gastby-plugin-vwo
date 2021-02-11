@@ -1,7 +1,7 @@
 {
-  "name": "gatsby-starter-plugin",
+  "name": "gatsby-plugin-vwo",
   "version": "1.0.0",
-  "description": "A minimal boilerplate for the essential files Gatsby looks for in a plugin",
+  "description": "Easily integrate VWO smartcode to your gatsby website!",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,8 +9,10 @@
   },
   "keywords": [
     "gatsby",
-    "gatsby-plugin"
+    "gatsby-plugin",
+    "vwo",
+    "react"
   ],
-  "author": "Kyle Gill <kyle.robert.gill@gmail.com>",
-  "license": "0BSD"
+  "author": "Shashwat M. Das <shashwatmdas@gmail.com>",
+  "license": "ISC"
 }

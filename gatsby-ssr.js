@@ -1,6 +1,32 @@
-/**
- * Implement Gatsby's SSR (Server Side Rendering) APIs in this file.
- *
- * See: https://www.gatsbyjs.com/docs/ssr-apis/
- */
-// You can delete this file if you're not using it
+import React from 'react'
+
+export const onRenderBody = (
+  { setHeadComponents },
+  { account_id,
+    settings_tolerance = 2000,
+    library_tolerance = 2500,
+    use_existing_jquery = false,
+    is_spa = 1,
+    hide_element = 'body',
+    async = true 
+  }
+) => {
+  setHeadComponents([
+    <script
+      key="gatsby-plugin-vwo"
+      async={async}
+      dangerouslySetInnerHTML={{
+        __html: `
+        window._vwo_code = window._vwo_code || (function(){
+        var account_id=${account_id},
+        settings_tolerance=${settings_tolerance},
+        library_tolerance=${library_tolerance},
+        use_existing_jquery=${use_existing_jquery},
+        is_spa=${is_spa},
+        hide_element='${hide_element}',
+        f=false,d=document,code={use_existing_jquery:function(){return use_existing_jquery;},library_tolerance:function(){return library_tolerance;},finish:function(){if(!f){f=true;var a=d.getElementById('_vis_opt_path_hides');if(a)a.parentNode.removeChild(a);}},finished:function(){return f;},load:function(a){var b=d.createElement('script');b.src=a;b.type='text/javascript';b.innerText;b.onerror=function(){_vwo_code.finish();};d.getElementsByTagName('head')[0].appendChild(b);},init:function(){
+        window.settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);var a=d.createElement('style'),b=hide_element?hide_element+'{opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important;}':'',h=d.getElementsByTagName('head')[0];a.setAttribute('id','_vis_opt_path_hides');a.setAttribute('type','text/css');if(a.styleSheet)a.styleSheet.cssText=b;else a.appendChild(d.createTextNode(b));h.appendChild(a);this.load('https://dev.visualwebsiteoptimizer.com/j.php?a='+account_id+'&u='+encodeURIComponent(d.URL)+'&f='+(+is_spa)+'&r='+Math.random());return settings_timer; }};window._vwo_settings_timer = code.init(); return code; }());`
+      }}
+    />
+  ])
+}
